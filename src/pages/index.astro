@@ -3,6 +3,11 @@ import Book from '../icons/Book.astro'
 import Layout from '../layouts/Layout.astro'
 import fetchMeaning, { type QueryResponse } from '../service/fetchMeaning'
 
+Astro.response.headers.set(
+  'Cache-Control',
+  `public, max-age=${60 * 10}, s-maxage=${60 * 60 * 24 * 30}`
+)
+
 const query = Astro.url.searchParams.get('query') || ''
 let data: QueryResponse = []
 if (query) {

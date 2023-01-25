@@ -1,14 +1,9 @@
-import { defineConfig } from 'astro/config';
+import netlify from '@astrojs/netlify/functions'
+import tailwind from '@astrojs/tailwind'
+import { defineConfig } from 'astro/config'
 
-// https://astro.build/config
-import netlify from "@astrojs/netlify/functions";
-
-// https://astro.build/config
-import tailwind from "@astrojs/tailwind";
-
-// https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: 'server',
   adapter: netlify(),
-  integrations: [tailwind()]
-});
+  integrations: [tailwind()],
+})
