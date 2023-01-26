@@ -1,6 +1,7 @@
 ---
 import Book from '@/icons/Book.astro'
 import Glass from '@/icons/Glass.astro'
+import Play from '@/icons/Play.astro'
 import Layout from '@/layouts/Layout.astro'
 import { fetchMeaning, type SuccessResponse } from '@/service/fetchMeaning'
 import { isFailureResponse } from '@/utils/isFailureResponse'
@@ -11,13 +12,13 @@ Astro.response.headers.set(
 )
 
 const query = Astro.url.searchParams.get('query') || ''
-let data: SuccessResponse | null = null
+let data: SuccessResponse[number] | null = null
 let error: string | null = null
 
 if (query) {
   try {
     const res = await fetchMeaning(query)
-    data = res
+    data = res[0]
   } catch (e) {
     if (isFailureResponse(e)) {
       error = e.message
@@ -51,25 +52,53 @@ if (query) {
         <label for="query" class="sr-only">Enter a word</label>
         <button
           aria-label="search"
-          class="h-5 w-5 absolute right-4 top-2.5"
+          class="h-4 w-4 absolute right-4 top-3"
           type="submit"
         >
           <Glass aria-hidden="true" />
         </button>
       </div>
     </form>
-    {query ? <h1>{query}</h1> : null}
+
     {error ? <span>{error}</span> : null}
     {
       data ? (
-        <ul>
-          {data.map((item, index) => (
-            <li>
-              {index + 1}. {item.word} - {item.phonetic}
-            </li>
-          ))}
-        </ul>
+        <>
+          <div class="flex w-full justify-between items-start mt-8">
+            <div>
+              <h1>{query}</h1>
+              <span>{data.phonetic}</span>
+            </div>
+            <div>
+              <button
+                aria-label="Play Sound"
+                class="p-3 grid place-content-center bg-gray-100 rounded-full"
+                type="button"
+              >
+                <Play aria-hidden="true" class="h-6 w-6" />
+              </button>
+              <audio
+                hidden
+                id="audio"
+                src={data.phonetics.find((item) => item.audio)?.audio}
+              />
+            </div>
+          </div>
+        </>
       ) : null
     }
   </main>
 </Layout>
+
+<script>
+  // Handle Audio Playback
+  const audioEl = document.getElementById('audio') as HTMLAudioElement
+
+  const playBtn = document.querySelector<HTMLButtonElement>(
+    '[aria-label="Play Sound"]'
+  )
+
+  playBtn?.addEventListener('click', () => {
+    audioEl?.play()
+  })
+</script>
