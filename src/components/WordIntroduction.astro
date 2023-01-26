@@ -1,0 +1,40 @@
+---
+import Play from '@/icons/Play.astro'
+
+export interface Props {
+  audioUrl?: string
+  phonetic?: string
+  word: string
+}
+
+const { audioUrl, phonetic, word } = Astro.props
+---
+
+<div class="flex w-full justify-between items-start mt-8">
+  <div>
+    <h1>{word}</h1>
+    {phonetic ? <span>{phonetic}</span> : null}
+  </div>
+  <button
+    aria-label="Play Sound"
+    class="p-3 grid place-content-center bg-gray-100 rounded-full shadow-sm border"
+    disabled={!audioUrl}
+    type="button"
+  >
+    <Play aria-hidden="true" class="h-6 w-6" />
+  </button>
+  {audioUrl ? <audio hidden id="audio" src={audioUrl} /> : null}
+</div>
+
+<script>
+  // Handle Audio Playback
+  const audioEl = document.getElementById('audio') as HTMLAudioElement
+
+  const playBtn = document.querySelector<HTMLButtonElement>(
+    '[aria-label="Play Sound"]'
+  )
+
+  playBtn?.addEventListener('click', () => {
+    audioEl?.play()
+  })
+</script>

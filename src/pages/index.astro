@@ -1,7 +1,7 @@
 ---
+import WordIntroduction from '@/components/WordIntroduction.astro'
 import Book from '@/icons/Book.astro'
 import Glass from '@/icons/Glass.astro'
-import Play from '@/icons/Play.astro'
 import Layout from '@/layouts/Layout.astro'
 import { fetchMeaning, type SuccessResponse } from '@/service/fetchMeaning'
 import { isFailureResponse } from '@/utils/isFailureResponse'
@@ -14,6 +14,7 @@ Astro.response.headers.set(
 const query = Astro.url.searchParams.get('query') || ''
 let data: SuccessResponse[number] | null = null
 let error: string | null = null
+let audioUrl = ''
 
 if (query) {
   try {
@@ -26,6 +27,12 @@ if (query) {
       error = 'Something went wrong. Please try again later.'
     }
   }
+}
+
+if (data) {
+  audioUrl =
+    data.phonetics.find((item) => item.audio && item.audio?.length > 0)
+      ?.audio || ''
 }
 ---
 
@@ -61,44 +68,17 @@ if (query) {
     </form>
 
     {error ? <span>{error}</span> : null}
+
     {
       data ? (
         <>
-          <div class="flex w-full justify-between items-start mt-8">
-            <div>
-              <h1>{query}</h1>
-              <span>{data.phonetic}</span>
-            </div>
-            <div>
-              <button
-                aria-label="Play Sound"
-                class="p-3 grid place-content-center bg-gray-100 rounded-full"
-                type="button"
-              >
-                <Play aria-hidden="true" class="h-6 w-6" />
-              </button>
-              <audio
-                hidden
-                id="audio"
-                src={data.phonetics.find((item) => item.audio)?.audio}
-              />
-            </div>
-          </div>
+          <WordIntroduction
+            audioUrl={audioUrl}
+            phonetic={data.phonetic}
+            word={query}
+          />
         </>
       ) : null
     }
   </main>
 </Layout>
-
-<script>
-  // Handle Audio Playback
-  const audioEl = document.getElementById('audio') as HTMLAudioElement
-
-  const playBtn = document.querySelector<HTMLButtonElement>(
-    '[aria-label="Play Sound"]'
-  )
-
-  playBtn?.addEventListener('click', () => {
-    audioEl?.play()
-  })
-</script>
