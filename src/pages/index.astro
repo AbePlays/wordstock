@@ -1,8 +1,9 @@
 ---
-import Book from '../icons/Book.astro'
-import Glass from '../icons/Glass.astro'
-import Layout from '../layouts/Layout.astro'
-import { fetchMeaning, type QueryResponse } from '../service/fetchMeaning'
+import Book from '@/icons/Book.astro'
+import Glass from '@/icons/Glass.astro'
+import Layout from '@/layouts/Layout.astro'
+import { fetchMeaning, type SuccessResponse } from '@/service/fetchMeaning'
+import { isFailureResponse } from '@/utils/isFailureResponse'
 
 Astro.response.headers.set(
   'Cache-Control',
@@ -10,9 +11,20 @@ Astro.response.headers.set(
 )
 
 const query = Astro.url.searchParams.get('query') || ''
-let data: QueryResponse = []
+let data: SuccessResponse | null = null
+let error: string | null = null
+
 if (query) {
-  data = await fetchMeaning(query)
+  try {
+    const res = await fetchMeaning(query)
+    data = res
+  } catch (e) {
+    if (isFailureResponse(e)) {
+      error = e.message
+    } else {
+      error = 'Something went wrong. Please try again later.'
+    }
+  }
 }
 ---
 
@@ -47,14 +59,17 @@ if (query) {
       </div>
     </form>
     {query ? <h1>{query}</h1> : null}
-    <ul>
-      {
-        data.map((item, index) => (
-          <li>
-            {index + 1}. {item.word} - {item.phonetic}
-          </li>
-        ))
-      }
-    </ul>
+    {error ? <span>{error}</span> : null}
+    {
+      data ? (
+        <ul>
+          {data.map((item, index) => (
+            <li>
+              {index + 1}. {item.word} - {item.phonetic}
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
   </main>
 </Layout>

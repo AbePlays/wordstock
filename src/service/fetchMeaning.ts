@@ -25,11 +25,15 @@ export interface RootObject {
   meanings: Meaning[]
 }
 
-export type QueryResponse = RootObject[]
+export interface FailureResponse {
+  title: string
+  message: string
+  resolution: string
+}
 
-export default async function fetchMeaning(
-  word: string
-): Promise<QueryResponse> {
+export type SuccessResponse = RootObject[]
+
+export async function fetchMeaning(word: string): Promise<SuccessResponse> {
   const res = await fetch(`${BASE_URL}/${word}`)
   const data = await res.json()
   return data
