@@ -1,7 +1,8 @@
 ---
 import Book from '../icons/Book.astro'
+import Glass from '../icons/Glass.astro'
 import Layout from '../layouts/Layout.astro'
-import fetchMeaning, { type QueryResponse } from '../service/fetchMeaning'
+import { fetchMeaning, type QueryResponse } from '../service/fetchMeaning'
 
 Astro.response.headers.set(
   'Cache-Control',
@@ -18,15 +19,32 @@ if (query) {
 <Layout title="Wordstock">
   <header>
     <nav>
-      <a aria-label="Home" href="/">
-        <Book class="h-6 w-6" />
+      <a aria-label="Home" class="block w-fit" href="/">
+        <Book aria-hidden="true" class="h-6 w-6" />
       </a>
       <!-- TODO: Add dark mode toggle -->
     </nav>
   </header>
   <main class="mt-4">
     <form>
-      <input class="border w-full" id="query" name="query" type="text" />
+      <div class="relative">
+        <input
+          class="border w-full text-sm rounded-lg py-2.5 px-4 bg-gray-100"
+          id="query"
+          name="query"
+          placeholder="Enter a word"
+          type="text"
+          value={query}
+        />
+        <label for="query" class="sr-only">Enter a word</label>
+        <button
+          aria-label="search"
+          class="h-5 w-5 absolute right-4 top-2.5"
+          type="submit"
+        >
+          <Glass aria-hidden="true" />
+        </button>
+      </div>
     </form>
     {query ? <h1>{query}</h1> : null}
     <ul>
