@@ -8,13 +8,14 @@ export interface Phonetic {
 export interface Definition {
   definition: string
   example: string
-  synonyms: any[]
-  antonyms: any[]
+  synonyms: string[]
+  antonyms: string[]
 }
 
 export interface Meaning {
   partOfSpeech: string
   definitions: Definition[]
+  synonyms: string[]
 }
 
 export interface RootObject {

@@ -1,0 +1,46 @@
+---
+export interface Props {
+  definitions: string[]
+  partOfSpeech: string
+  synonyms: string[]
+}
+
+const { definitions, partOfSpeech, synonyms } = Astro.props
+---
+
+<div class="space-y-8">
+  <div class="flex items-center gap-4">
+    <span>{partOfSpeech}</span>
+    <div class="h-0.5 w-full bg-gray-100 rounded-full"></div>
+  </div>
+
+  <div>
+    <h2>Meaning</h2>
+    {
+      definitions?.length > 0 ? (
+        <ul class="list-disc list-outside mt-4">
+          {definitions.map((item) => (
+            <li class="ml-8">
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
+  </div>
+
+  <div class="flex gap-4">
+    <h2>Synonyms</h2>
+    {
+      synonyms?.length > 0 ? (
+        <ul>
+          {synonyms.map((item) => (
+            <li>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      ) : null
+    }
+  </div>
+</div>

@@ -1,5 +1,6 @@
 ---
 import WordIntroduction from '@/components/WordIntroduction.astro'
+import WordMeaning from '@/components/WordMeaning.astro'
 import Book from '@/icons/Book.astro'
 import Glass from '@/icons/Glass.astro'
 import Layout from '@/layouts/Layout.astro'
@@ -77,6 +78,17 @@ if (data) {
             phonetic={data.phonetic}
             word={query}
           />
+          <ul class="space-y-8 my-8">
+            {data.meanings.map((item) => (
+              <li>
+                <WordMeaning
+                  definitions={item.definitions.map((item) => item.definition)}
+                  partOfSpeech={item.partOfSpeech}
+                  synonyms={item.synonyms}
+                />
+              </li>
+            ))}
+          </ul>
         </>
       ) : null
     }
