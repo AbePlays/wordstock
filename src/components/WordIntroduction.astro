@@ -12,12 +12,12 @@ const { audioUrl, phonetic, word } = Astro.props
 
 <div class="flex w-full justify-between items-start mt-8">
   <div>
-    <h1>{word}</h1>
-    {phonetic ? <span>{phonetic}</span> : null}
+    <h1 class="font-bold text-2xl md:text-4xl">{word}</h1>
+    {phonetic ? <span class="text-accent">{phonetic}</span> : null}
   </div>
   <button
     aria-label="Play Sound"
-    class="p-2.5 grid place-content-center bg-gray-100 rounded-full shadow-sm border"
+    class="p-2.5 grid place-content-center bg-gray-100 rounded-full shadow-sm border text-accent focus-visible:outline-accent"
     disabled={!audioUrl}
     type="button"
   >
