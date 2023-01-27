@@ -10,37 +10,44 @@ const { definitions, partOfSpeech, synonyms } = Astro.props
 
 <div class="space-y-8">
   <div class="flex items-center gap-4">
-    <span>{partOfSpeech}</span>
+    <span class="italic font-semibold">{partOfSpeech}</span>
     <div class="h-0.5 w-full bg-gray-100 rounded-full"></div>
   </div>
 
-  <div>
-    <h2>Meaning</h2>
-    {
-      definitions?.length > 0 ? (
-        <ul class="list-disc list-outside mt-4">
+  {
+    definitions?.length > 0 ? (
+      <div>
+        <h2 class="text-gray-500" id="meaning">
+          Meaning
+        </h2>
+        <ul
+          class="list-disc list-outside mt-4 space-y-4"
+          aria-labelledby="meaning"
+        >
           {definitions.map((item) => (
-            <li class="ml-8">
+            <li class="ml-4 sm:ml-8 marker:text-accent text-gray-700">
               <span>{item}</span>
             </li>
           ))}
         </ul>
-      ) : null
-    }
-  </div>
+      </div>
+    ) : null
+  }
 
-  <div class="flex gap-4">
-    <h2>Synonyms</h2>
-    {
-      synonyms?.length > 0 ? (
-        <ul>
+  {
+    synonyms?.length > 0 ? (
+      <div class="flex gap-4">
+        <h2 class="text-gray-500" id="synonyms">
+          Synonyms
+        </h2>
+        <ul aria-labelledby="synonyms">
           {synonyms.map((item) => (
-            <li>
+            <li class="text-accent font-semibold">
               <span>{item}</span>
             </li>
           ))}
         </ul>
-      ) : null
-    }
-  </div>
+      </div>
+    ) : null
+  }
 </div>
