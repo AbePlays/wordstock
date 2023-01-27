@@ -8,8 +8,8 @@ export interface Phonetic {
 export interface Definition {
   definition: string
   example: string
-  synonyms: any[]
-  antonyms: any[]
+  synonyms: string[]
+  antonyms: string[]
 }
 
 export interface Meaning {
@@ -24,6 +24,7 @@ export interface RootObject {
   phonetics: Phonetic[]
   origin: string
   meanings: Meaning[]
+  sourceUrls: string[]
 }
 
 export interface FailureResponse {
@@ -101,7 +102,7 @@ const mockData = [
 ]
 
 export async function fetchMeaning(word: string): Promise<any> {
-  return Promise.resolve(mockData)
+  // return Promise.resolve(mockData)
   const res = await fetch(`${BASE_URL}/${word}`)
   const data = await res.json()
   return data
