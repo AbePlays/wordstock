@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./src/**/*.astro'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        lora: ['Lora', 'serif'],
+      },
+    },
   },
   plugins: [],
 }
