@@ -69,7 +69,13 @@ if (data) {
       </div>
     </form>
 
-    {error ? <span>{error}</span> : null}
+    {
+      error ? (
+        <span class="text-red-500 mt-4 block" role="alert">
+          {error}
+        </span>
+      ) : null
+    }
 
     {
       data ? (
