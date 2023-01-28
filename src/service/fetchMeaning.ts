@@ -102,8 +102,11 @@ const mockData = [
 ]
 
 export async function fetchMeaning(word: string): Promise<any> {
-  // return Promise.resolve(mockData)
-  const res = await fetch(`${BASE_URL}/${word}`)
-  const data = await res.json()
-  return data
+  if (import.meta.env.DEV) {
+    return Promise.resolve(mockData)
+  } else {
+    const res = await fetch(`${BASE_URL}/${word}`)
+    const data = await res.json()
+    return data
+  }
 }
