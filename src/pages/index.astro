@@ -2,6 +2,7 @@
 import WordIntroduction from '@/components/WordIntroduction.astro'
 import WordMeaning from '@/components/WordMeaning.astro'
 import Book from '@/icons/Book.astro'
+import ExternalLink from '@/icons/ExternalLink.astro'
 import Glass from '@/icons/Glass.astro'
 import Layout from '@/layouts/Layout.astro'
 import { fetchMeaning, type SuccessResponse } from '@/service/fetchMeaning'
@@ -78,6 +79,7 @@ if (data) {
             phonetic={data.phonetic}
             word={query}
           />
+
           <ul class="space-y-8 my-8">
             {data.meanings.map((item) => (
               <li>
@@ -89,6 +91,38 @@ if (data) {
               </li>
             ))}
           </ul>
+
+          {data.sourceUrls?.length > 0 ? (
+            <>
+              <div class="h-0.5 w-full bg-gray-100 rounded-full" />
+              <h2 class="text-gray-500 mt-8" id="source">
+                Source
+              </h2>
+              <ul
+                aria-labelledby="source"
+                class="list-disc list-outside mt-4 space-y-4"
+              >
+                {data.sourceUrls.map((item) => (
+                  <li class="ml-4 sm:ml-8 marker:text-accent text-gray-700">
+                    <span class="flex items-center gap-2">
+                      {item}{' '}
+                      <a
+                        aria-label="Go to source"
+                        href={item}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <ExternalLink
+                          aria-hidden="true"
+                          class="h-4 w-4 text-gray-500"
+                        />
+                      </a>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
         </>
       ) : null
     }
