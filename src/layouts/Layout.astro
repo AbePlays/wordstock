@@ -21,7 +21,32 @@ const { title } = Astro.props
     />
     <title>{title}</title>
   </head>
-  <body class="max-w-screen-sm mx-auto py-4 px-4 md:py-8 font-lora">
+  <body
+    class="max-w-screen-sm mx-auto py-4 px-4 md:py-8 font-lora dark:bg-black"
+  >
     <slot />
   </body>
 </html>
+
+<script is:inline>
+  const darkModeKey = 'isNocturnal'
+  const theme = (() => {
+    if (
+      typeof localStorage !== 'undefined' &&
+      localStorage.getItem(darkModeKey)
+    ) {
+      return localStorage.getItem(darkModeKey)
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark'
+    }
+    return 'light'
+  })()
+
+  if (theme === 'light') {
+    document.documentElement.classList.remove('dark')
+  } else {
+    document.documentElement.classList.add('dark')
+  }
+  window.localStorage.setItem(darkModeKey, theme)
+</script>

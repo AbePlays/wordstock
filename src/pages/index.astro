@@ -42,7 +42,7 @@ if (data) {
   <header>
     <nav>
       <a aria-label="Home" class="block w-fit" href="/">
-        <Book aria-hidden="true" class="h-6 w-6" />
+        <Book aria-hidden="true" class="h-6 w-6 dark:text-gray-100" />
       </a>
       <!-- TODO: Add dark mode toggle -->
     </nav>
@@ -51,7 +51,7 @@ if (data) {
     <form>
       <div class="relative">
         <input
-          class="border w-full text-sm rounded-lg py-2.5 px-4 pr-10 bg-gray-100 focus-visible:outline-accent"
+          class="border w-full text-sm rounded-lg py-2.5 px-4 pr-10 bg-gray-100 focus-visible:ring-accent dark:bg-stone-900 outline-none focus-visible:ring-2 dark:border-gray-800 dark:text-gray-300 autofill:bg-gray-100 dark:autofill:bg-stone-900"
           id="query"
           name="query"
           placeholder="Enter a word"
@@ -100,8 +100,8 @@ if (data) {
 
           {data.sourceUrls?.length > 0 ? (
             <>
-              <div class="h-0.5 w-full bg-gray-100 rounded-full" />
-              <h2 class="text-gray-500 mt-8" id="source">
+              <div class="h-0.5 w-full bg-gray-100 dark:bg-gray-800 rounded-full" />
+              <h2 class="text-gray-500 dark:text-gray-400 mt-8" id="source">
                 Source
               </h2>
               <ul
@@ -109,7 +109,7 @@ if (data) {
                 class="list-disc list-outside mt-4 space-y-4"
               >
                 {data.sourceUrls.map((item) => (
-                  <li class="ml-4 sm:ml-8 marker:text-accent text-gray-700">
+                  <li class="ml-4 sm:ml-8 marker:text-accent text-gray-700 dark:text-gray-300">
                     <span class="flex items-center gap-2">
                       {item}{' '}
                       <a
@@ -118,10 +118,7 @@ if (data) {
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        <ExternalLink
-                          aria-hidden="true"
-                          class="h-4 w-4 text-gray-500"
-                        />
+                        <ExternalLink aria-hidden="true" class="h-4 w-4" />
                       </a>
                     </span>
                   </li>
