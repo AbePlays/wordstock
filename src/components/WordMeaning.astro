@@ -1,6 +1,8 @@
 ---
+import type { Definition } from '@/service/fetchMeaning'
+
 export interface Props {
-  definitions: string[]
+  definitions: Definition[]
   partOfSpeech: string
   synonyms: string[]
 }
@@ -26,7 +28,10 @@ const { definitions, partOfSpeech, synonyms } = Astro.props
         >
           {definitions.map((item) => (
             <li class="ml-4 sm:ml-8 marker:text-accent text-gray-700">
-              <span>{item}</span>
+              <span>{item.definition}</span>
+              {item.example?.length > 0 ? (
+                <span class="block text-gray-500 mt-2">"{item.example}"</span>
+              ) : null}
             </li>
           ))}
         </ul>
