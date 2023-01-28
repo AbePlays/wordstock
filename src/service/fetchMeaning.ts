@@ -37,19 +37,17 @@ export type SuccessResponse = RootObject[]
 
 const mockData = [
   {
-    word: 'keyboard',
-    phonetic: '/ˈkiːbɔːd/',
+    word: 'bang',
+    phonetic: '/bæŋ(ɡ)/',
     phonetics: [
-      { text: '/ˈkiːbɔːd/', audio: '' },
-      { text: '/ˈkiːbɔːd/', audio: '' },
       {
-        text: '/ˈkibɔɹd/',
+        text: '/bæŋ(ɡ)/',
         audio:
-          'https://api.dictionaryapi.dev/media/pronunciations/en/keyboard-us.mp3',
-        sourceUrl: 'https://commons.wikimedia.org/w/index.php?curid=1755168',
+          'https://api.dictionaryapi.dev/media/pronunciations/en/bang-us.mp3',
+        sourceUrl: 'https://commons.wikimedia.org/w/index.php?curid=50554427',
         license: {
-          name: 'BY-SA 3.0',
-          url: 'https://creativecommons.org/licenses/by-sa/3.0',
+          name: 'BY-SA 4.0',
+          url: 'https://creativecommons.org/licenses/by-sa/4.0',
         },
       },
     ],
@@ -58,35 +56,183 @@ const mockData = [
         partOfSpeech: 'noun',
         definitions: [
           {
+            definition: 'A sudden percussive noise.',
+            synonyms: [],
+            antonyms: [],
+            example: 'When he struck it with a hammer, there was a loud bang.',
+          },
+          {
+            definition: 'A strike upon an object causing such a noise.',
+            synonyms: [],
+            antonyms: [],
+          },
+          { definition: 'An explosion.', synonyms: [], antonyms: [] },
+          {
+            definition: 'The symbol !, known as an exclamation point.',
+            synonyms: [],
+            antonyms: [],
+            example: 'An e-mail address with an ! is called a bang path.',
+          },
+          {
             definition:
-              '(etc.) A set of keys used to operate a typewriter, computer etc.',
+              'A factorial, in mathematics, because the factorial of n is often written as n!',
+            synonyms: [],
+            antonyms: [],
+          },
+          {
+            definition: 'An act of sexual intercourse.',
             synonyms: [],
             antonyms: [],
           },
           {
             definition:
-              'A component of many instruments including the piano, organ, and harpsichord consisting of usually black and white keys that cause different tones to be produced when struck.',
+              'An offbeat figure typical of reggae songs and played on guitar and piano.',
             synonyms: [],
             antonyms: [],
           },
           {
-            definition:
-              'A device with keys of a musical keyboard, used to control electronic sound-producing devices which may be built into or separate from the keyboard device.',
+            definition: 'An explosive product.',
+            synonyms: [],
+            antonyms: [],
+            example: 'Load the bang into the hole.',
+          },
+          {
+            definition: 'An injection, a shot (of a narcotic drug).',
             synonyms: [],
             antonyms: [],
           },
+          {
+            definition: '(Boston area) An abrupt left turn.',
+            synonyms: [],
+            antonyms: [],
+          },
+          {
+            definition: 'Strong smell (of)',
+            synonyms: [],
+            antonyms: [],
+            example: 'There was a bang of onions off his breath.',
+          },
+          { definition: 'A thrill.', synonyms: [], antonyms: [] },
         ],
-        synonyms: ['electronic keyboard'],
-        antonyms: [],
+        synonyms: [
+          'exclamation mark',
+          'exclamation point',
+          'blow',
+          'strike',
+          'explosion',
+        ],
+        antonyms: ['hang'],
       },
       {
         partOfSpeech: 'verb',
         definitions: [
           {
-            definition: 'To type on a computer keyboard.',
+            definition:
+              'To make sudden loud noises, and often repeatedly, especially by exploding or hitting something.',
             synonyms: [],
             antonyms: [],
-            example: 'Keyboarding is the part of this job I hate the most.',
+            example:
+              'My head was banging after drinking all night at the concert.',
+          },
+          {
+            definition: 'To hit hard.',
+            synonyms: [],
+            antonyms: [],
+            example: 'David and Mary banged into each other.',
+          },
+          {
+            definition: 'To engage in sexual intercourse.',
+            synonyms: ['do it', 'have sex', 'nail'],
+            antonyms: [],
+            example: 'We can hear the couple banging upstairs.',
+          },
+          {
+            definition: '(with "in") To hammer or to hit anything hard.',
+            synonyms: [],
+            antonyms: [],
+            example: 'Hold the picture while I bang in this nail.',
+          },
+          {
+            definition:
+              "To cut squarely across, as the tail of a horse, or a person's forelock; to cut (the hair).",
+            synonyms: [],
+            antonyms: [],
+          },
+          {
+            definition: 'To inject intravenously.',
+            synonyms: [],
+            antonyms: [],
+            example: 'Do you smoke meth? No, I bang it.',
+          },
+        ],
+        synonyms: ['do it', 'have sex', 'nail'],
+        antonyms: [],
+      },
+      {
+        partOfSpeech: 'adverb',
+        definitions: [
+          {
+            definition: 'Right, directly.',
+            synonyms: [],
+            antonyms: [],
+            example: 'The passenger door was bang against the garage wall.',
+          },
+          {
+            definition: 'Precisely.',
+            synonyms: [],
+            antonyms: [],
+            example: 'He arrived bang on time.',
+          },
+          {
+            definition: 'With a sudden impact.',
+            synonyms: [],
+            antonyms: [],
+            example: 'Distracted, he ran bang into the opening door.',
+          },
+        ],
+        synonyms: [],
+        antonyms: [],
+      },
+      {
+        partOfSpeech: 'interjection',
+        definitions: [
+          {
+            definition:
+              'A sudden percussive sound, such as made by the firing of a gun, slamming of a door, etc.',
+            synonyms: [],
+            antonyms: [],
+            example:
+              'He pointed his finger at her like a gun and said, "Bang!"',
+          },
+        ],
+        synonyms: [],
+        antonyms: [],
+      },
+      {
+        partOfSpeech: 'noun',
+        definitions: [
+          {
+            definition: 'Hair hanging over the forehead.',
+            synonyms: [],
+            antonyms: [],
+          },
+          {
+            definition:
+              'A hairstyle including such hair, especially cut straight across the forehead.',
+            synonyms: [],
+            antonyms: [],
+          },
+        ],
+        synonyms: ['bang', 'forelocks', 'fringe', 'bang', 'fringe'],
+        antonyms: [],
+      },
+      {
+        partOfSpeech: 'noun',
+        definitions: [
+          {
+            definition: 'Brucellosis, a bacterial disease.',
+            synonyms: [],
+            antonyms: [],
           },
         ],
         synonyms: [],
@@ -97,7 +243,49 @@ const mockData = [
       name: 'CC BY-SA 3.0',
       url: 'https://creativecommons.org/licenses/by-sa/3.0',
     },
-    sourceUrls: ['https://en.wiktionary.org/wiki/keyboard'],
+    sourceUrls: [
+      'https://en.wiktionary.org/wiki/bang',
+      'https://en.wiktionary.org/wiki/bangs',
+    ],
+  },
+  {
+    word: 'bang',
+    phonetic: '/bæŋ(ɡ)/',
+    phonetics: [
+      {
+        text: '/bæŋ(ɡ)/',
+        audio:
+          'https://api.dictionaryapi.dev/media/pronunciations/en/bang-us.mp3',
+        sourceUrl: 'https://commons.wikimedia.org/w/index.php?curid=50554427',
+        license: {
+          name: 'BY-SA 4.0',
+          url: 'https://creativecommons.org/licenses/by-sa/4.0',
+        },
+      },
+    ],
+    meanings: [
+      {
+        partOfSpeech: 'noun',
+        definitions: [
+          {
+            definition:
+              'Cannabis, especially as used in the Indian subcontinent.',
+            synonyms: [],
+            antonyms: [],
+          },
+        ],
+        synonyms: [],
+        antonyms: [],
+      },
+    ],
+    license: {
+      name: 'CC BY-SA 3.0',
+      url: 'https://creativecommons.org/licenses/by-sa/3.0',
+    },
+    sourceUrls: [
+      'https://en.wiktionary.org/wiki/bang',
+      'https://en.wiktionary.org/wiki/bhang',
+    ],
   },
 ]
 

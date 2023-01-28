@@ -46,9 +46,11 @@ const { definitions, partOfSpeech, synonyms } = Astro.props
           Synonyms
         </h2>
         <ul aria-labelledby="synonyms">
-          {synonyms.map((item) => (
-            <li class="text-accent font-semibold">
-              <span>{item}</span>
+          {synonyms.map((item, index) => (
+            <li class="text-accent font-semibold inline">
+              <span>
+                {`${item}${index !== synonyms.length - 1 ? ',' : ''}`}
+              </span>
             </li>
           ))}
         </ul>
